@@ -9,7 +9,7 @@ from pyspark.sql.functions import current_timestamp
 # COMMAND ----------
 
 # Set current catalog and database
-spark.sql("USE CATALOG levkiwi_lakehouse")
+spark.sql("USE CATALOG yvescollet_lakehouse")
 spark.sql("USE DATABASE silver")
 
 # COMMAND ----------
@@ -176,6 +176,7 @@ src_sod.createOrReplaceTempView("src_sod")
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 12
 spark.sql("""
 MERGE INTO silver.sales_order_detail AS tgt
 USING src_sod AS src
@@ -189,10 +190,6 @@ WHEN MATCHED AND (
        tgt.rowguid != src.rowguid OR
        tgt.modified_date != src.modified_date
 ) THEN UPDATE SET
-    tgt._tf_valid_to = current_timestamp(),
-    tgt._tf_update_date = current_timestamp()
-WHEN NOT MATCHED BY SOURCE AND tgt._tf_valid_to IS NULL THEN
-  UPDATE SET
     tgt._tf_valid_to = current_timestamp(),
     tgt._tf_update_date = current_timestamp()
 """)

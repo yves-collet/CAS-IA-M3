@@ -1,0 +1,8 @@
+-- Databricks notebook source
+-- MAGIC %md
+-- MAGIC # 3. Créer un workflow :
+-- MAGIC Configurez un job dans workflow de
+-- MAGIC Databricks qui va charger les couches
+-- MAGIC Bronze et Silver de votre Lakehouse.
+-- MAGIC
+-- MAGIC --> cf. "Jobs & Pipelines" --> "Load Lakehouse"

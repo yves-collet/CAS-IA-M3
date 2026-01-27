@@ -503,3 +503,8 @@ WHEN NOT MATCHED THEN
     load_date,        -- _tf_create_date
     load_date         -- _tf_update_date
   )
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC ## Incremental load of customer_address

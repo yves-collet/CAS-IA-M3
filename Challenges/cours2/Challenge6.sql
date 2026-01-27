@@ -1,0 +1,7 @@
+-- Databricks notebook source
+-- MAGIC %md
+-- MAGIC # 6. Compléter le workflow
+-- MAGIC Ajoutez le chargement de la couche gold dans la pipeline de votre lakehouse.
+-- MAGIC
+-- MAGIC
+-- MAGIC --> cf. "Jobs & Pipelines" --> "Load_Lakehouse"
