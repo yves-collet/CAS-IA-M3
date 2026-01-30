@@ -222,6 +222,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
+/*DROP TABLE silver.customer_address;*/
 CREATE TABLE IF NOT EXISTS silver.customer_address AS
 SELECT
     CustomerID      AS customer_id,
@@ -233,7 +234,7 @@ SELECT
     CAST(NULL AS TIMESTAMP) AS _tf_valid_to,
     CAST(NULL AS TIMESTAMP) AS _tf_create_date,
     CAST(NULL AS TIMESTAMP) AS _tf_update_date
-FROM bronze.customer_address
+FROM bronze.customeraddress
 WHERE 1=0;
 
 MERGE INTO silver.customer_address AS tgt
@@ -244,7 +245,7 @@ USING (
         AddressType     AS address_type,
         rowguid         AS rowguid,
         ModifiedDate    AS modified_date
-    FROM bronze.customer_address
+    FROM bronze.customeraddress
 ) AS src
 ON tgt.customer_id = src.customer_id
    AND tgt.address_id = src.address_id
@@ -273,7 +274,7 @@ USING (
         AddressType     AS address_type,
         rowguid         AS rowguid,
         ModifiedDate    AS modified_date
-    FROM bronze.customer_address
+    FROM bronze.customeraddress
 ) AS src
 ON tgt.customer_id = src.customer_id
    AND tgt.address_id = src.address_id
@@ -296,6 +297,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
+/*DROP TABLE silver.product;*/
 CREATE TABLE IF NOT EXISTS silver.product AS
 SELECT
     ProductID              AS product_id,
@@ -414,6 +416,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
+/*DROP TABLE IF EXISTS silver.product_category;*/
 CREATE TABLE IF NOT EXISTS silver.product_category AS
 SELECT
     ProductCategoryID       AS product_category_id,
@@ -425,7 +428,7 @@ SELECT
     CAST(NULL AS TIMESTAMP) AS _tf_valid_to,
     CAST(NULL AS TIMESTAMP) AS _tf_create_date,
     CAST(NULL AS TIMESTAMP) AS _tf_update_date
-FROM bronze.product_category
+FROM bronze.productcategory
 WHERE 1=0;
 
 MERGE INTO silver.product_category AS tgt
@@ -436,7 +439,7 @@ USING (
         Name                    AS name,
         rowguid                 AS rowguid,
         ModifiedDate            AS modified_date
-    FROM bronze.product_category
+    FROM bronze.productcategory
 ) AS src
 ON tgt.product_category_id = src.product_category_id
    AND tgt._tf_valid_to IS NULL
@@ -464,7 +467,7 @@ USING (
         Name                    AS name,
         rowguid                 AS rowguid,
         ModifiedDate            AS modified_date
-    FROM bronze.product_category
+    FROM bronze.productcategory
 ) AS src
 ON tgt.product_category_id = src.product_category_id
    AND tgt._tf_valid_to IS NULL
@@ -488,6 +491,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
+/*DROP TABLE IF EXISTS silver.product_description;*/
 CREATE TABLE IF NOT EXISTS silver.product_description AS
 SELECT
     ProductDescriptionID AS product_description_id,
@@ -498,7 +502,7 @@ SELECT
     CAST(NULL AS TIMESTAMP) AS _tf_valid_to,
     CAST(NULL AS TIMESTAMP) AS _tf_create_date,
     CAST(NULL AS TIMESTAMP) AS _tf_update_date
-FROM bronze.product_description
+FROM bronze.productdescription
 WHERE 1=0;
 
 MERGE INTO silver.product_description AS tgt
@@ -508,7 +512,7 @@ USING (
         Description          AS description,
         rowguid              AS rowguid,
         ModifiedDate         AS modified_date
-    FROM bronze.product_description
+    FROM bronze.productdescription
 ) AS src
 ON tgt.product_description_id = src.product_description_id
    AND tgt._tf_valid_to IS NULL
@@ -535,7 +539,7 @@ USING (
         Description          AS description,
         rowguid              AS rowguid,
         ModifiedDate         AS modified_date
-    FROM bronze.product_description
+    FROM bronze.productdescription
 ) AS src
 ON tgt.product_description_id = src.product_description_id
    AND tgt._tf_valid_to IS NULL
@@ -557,6 +561,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
+/*DROP TABLE IF EXISTS silver.product_model;*/
 CREATE TABLE IF NOT EXISTS silver.product_model AS
 SELECT
     ProductModelID     AS product_model_id,
@@ -568,7 +573,7 @@ SELECT
     CAST(NULL AS TIMESTAMP) AS _tf_valid_to,
     CAST(NULL AS TIMESTAMP) AS _tf_create_date,
     CAST(NULL AS TIMESTAMP) AS _tf_update_date
-FROM bronze.product_model
+FROM bronze.productmodel
 WHERE 1=0;
 
 MERGE INTO silver.product_model AS tgt
@@ -579,7 +584,7 @@ USING (
         CatalogDescription AS catalog_description,
         rowguid            AS rowguid,
         ModifiedDate       AS modified_date
-    FROM bronze.product_model
+    FROM bronze.productmodel
 ) AS src
 ON tgt.product_model_id = src.product_model_id
    AND tgt._tf_valid_to IS NULL
@@ -608,7 +613,7 @@ USING (
         CatalogDescription AS catalog_description,
         rowguid            AS rowguid,
         ModifiedDate       AS modified_date
-    FROM bronze.product_model
+    FROM bronze.productmodel
 ) AS src
 ON tgt.product_model_id = src.product_model_id
    AND tgt._tf_valid_to IS NULL
@@ -630,6 +635,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
+/*DROP TABLE IF EXISTS silver.product_model_product_description;*/
 CREATE TABLE IF NOT EXISTS silver.product_model_product_description AS
 SELECT
     ProductModelID       AS product_model_id,
@@ -641,7 +647,7 @@ SELECT
     CAST(NULL AS TIMESTAMP) AS _tf_valid_to,
     CAST(NULL AS TIMESTAMP) AS _tf_create_date,
     CAST(NULL AS TIMESTAMP) AS _tf_update_date
-FROM bronze.product_model_product_description
+FROM bronze.productmodelproductdescription
 WHERE 1=0;
 
 MERGE INTO silver.product_model_product_description AS tgt
@@ -652,7 +658,7 @@ USING (
         Culture              AS culture,
         rowguid              AS rowguid,
         ModifiedDate         AS modified_date
-    FROM bronze.product_model_product_description
+    FROM bronze.productmodelproductdescription
 ) AS src
 ON tgt.product_model_id = src.product_model_id
    AND tgt.product_description_id = src.product_description_id
@@ -681,7 +687,7 @@ USING (
         Culture              AS culture,
         rowguid              AS rowguid,
         ModifiedDate         AS modified_date
-    FROM bronze.product_model_product_description
+    FROM bronze.productmodelproductdescription
 ) AS src
 ON tgt.product_model_id = src.product_model_id
    AND tgt.product_description_id = src.product_description_id
@@ -705,6 +711,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
+/*DROP TABLE IF EXISTS silver.sales_order_header;*/
 CREATE TABLE IF NOT EXISTS silver.sales_order_header AS
 SELECT
     SalesOrderID    AS sales_order_id,
@@ -733,7 +740,7 @@ SELECT
     CAST(NULL AS TIMESTAMP) AS _tf_valid_to,
     CAST(NULL AS TIMESTAMP) AS _tf_create_date,
     CAST(NULL AS TIMESTAMP) AS _tf_update_date
-FROM bronze.sales_order_header
+FROM bronze.salesorderheader
 WHERE 1=0;
 
 MERGE INTO silver.sales_order_header AS tgt
@@ -761,7 +768,7 @@ USING (
         Comment         AS comment,
         rowguid         AS rowguid,
         ModifiedDate    AS modified_date
-    FROM bronze.sales_order_header
+    FROM bronze.salesorderheader
 ) AS src
 ON tgt.sales_order_id = src.sales_order_id
    AND tgt._tf_valid_to IS NULL
@@ -807,7 +814,7 @@ USING (
         Comment         AS comment,
         rowguid         AS rowguid,
         ModifiedDate    AS modified_date
-    FROM bronze.sales_order_header
+    FROM bronze.salesorderheader
 ) AS src
 ON tgt.sales_order_id = src.sales_order_id
    AND tgt._tf_valid_to IS NULL
@@ -837,6 +844,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
+/*DROP TABLE IF EXISTS silver.sales_order_detail;*/
 CREATE TABLE IF NOT EXISTS silver.sales_order_detail AS
 SELECT
     SalesOrderID       AS sales_order_id,
@@ -852,7 +860,7 @@ SELECT
     CAST(NULL AS TIMESTAMP) AS _tf_valid_to,
     CAST(NULL AS TIMESTAMP) AS _tf_create_date,
     CAST(NULL AS TIMESTAMP) AS _tf_update_date
-FROM bronze.sales_order_detail
+FROM bronze.salesorderdetail
 WHERE 1=0;
 
 MERGE INTO silver.sales_order_detail AS tgt
@@ -867,7 +875,7 @@ USING (
         LineTotal          AS line_total,
         rowguid            AS rowguid,
         ModifiedDate       AS modified_date
-    FROM bronze.sales_order_detail
+    FROM bronze.salesorderdetail
 ) AS src
 ON tgt.sales_order_id = src.sales_order_id
    AND tgt.sales_order_detail_id = src.sales_order_detail_id
@@ -901,7 +909,7 @@ USING (
         LineTotal          AS line_total,
         rowguid            AS rowguid,
         ModifiedDate       AS modified_date
-    FROM bronze.sales_order_detail
+    FROM bronze.salesorderdetail
 ) AS src
 ON tgt.sales_order_id = src.sales_order_id
    AND tgt.sales_order_detail_id = src.sales_order_detail_id

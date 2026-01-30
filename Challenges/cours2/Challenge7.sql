@@ -11,10 +11,10 @@ USE CATALOG yvescollet_lakehouse;
 -- COMMAND ----------
 
 -- DBTITLE 1,Cell 3
-GRANT USAGE ON CATALOG yvescollet_lakehouse TO `julien.burdy@he-arc.ch`;
-GRANT USAGE ON SCHEMA yvescollet_lakehouse.gold TO `julien.burdy@he-arc.ch`;
+GRANT USAGE ON CATALOG yvescollet_lakehouse TO `alexandre.mueller@he-arc.ch`;
+GRANT USAGE ON SCHEMA yvescollet_lakehouse.gold TO `alexandre.mueller@he-arc.ch`;
 
-GRANT SELECT ON SCHEMA yvescollet_lakehouse.gold TO `julien.burdy@he-arc.ch`;
+GRANT SELECT ON SCHEMA yvescollet_lakehouse.gold TO `alexandre.mueller@he-arc.ch`;
 
 -- COMMAND ----------
 

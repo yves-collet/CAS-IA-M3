@@ -28,16 +28,11 @@ SELECT
     p.discontinued_date,
     pm.name AS model_name,
     pm.catalog_description,
-    p.product_category_id,
-    pc.category_name,
-    pc.parent_category_name,
-    pc.level
+    p.product_category_id
 FROM silver.product p
 LEFT JOIN silver.product_model pm 
     ON p.product_model_id = pm.product_model_id 
     AND pm._tf_valid_to IS NULL
-LEFT JOIN gold.dim_product_category pc 
-    ON p.product_category_id = pc.product_category_id
 WHERE p._tf_valid_to IS NULL;
 
 -- COMMAND ----------
